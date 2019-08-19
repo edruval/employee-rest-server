@@ -40,7 +40,6 @@ public class EmployeeInitializer implements CommandLineRunner {
             MappingIterator<T> readValues = mapper.readerFor(type).with(bootstrapSchema).readValues(file);
             return readValues.readAll();
         } catch (Exception e) {
-            e.printStackTrace();
             return Collections.emptyList();
         }
     }
