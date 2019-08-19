@@ -26,13 +26,11 @@ public class EmployeeService {
     public EmployeeDTO getEmployee(long employeeId) {
         Optional<Employee> employeeFound = employeeDAO.get(employeeId)
                 .filter(e -> e.getStatus().equals(Employee.EmployeeStatus.ACTIVE));
-  
         return ServiceHelper.employeeToDto(employeeFound.orElse(null));
     }
 
     public EmployeeDTO addEmployee(EmployeeDTO employeeDto) {
         Employee employee = ServiceHelper.dtoToEmployee(employeeDto);
-
         if (employee == null || !ServiceHelper.isEmployeeValid(employee) || employee.getId() != 0) {
             throw new IllegalArgumentException();
         }

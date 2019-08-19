@@ -47,7 +47,7 @@ The following HTTP operations are available:
    
 - **GET**    /api/v1/employees/{id} *`Gets an 'active' employee by id`*
     > Returns HTTP 200 and the employee details.
-    Returns HTTP 404 if the employee was not found.
+    > Returns HTTP 404 if the employee was not found.
 
 	Request example:
    ````
@@ -56,7 +56,7 @@ The following HTTP operations are available:
     
 - **POST**   /api/v1/employees *`Creates a new 'active' employee`*
     > Returns HTTP 200 and the details of the created employee.
-    Returns HTTP 400 if the request is invalid.
+    > Returns HTTP 400 if the request is invalid.
    
     Request example:
    ````
@@ -71,7 +71,7 @@ The following HTTP operations are available:
    ````
 - **PUT**  /api/v1/employees/{id} *`Updates an existing employee`*
     > Returns HTTP 200 and the id of the updated employee.
-    Returns HTTP 400 if the request is invalid.
+    > Returns HTTP 400 if the request is invalid.
     
     Request example:
    ````
@@ -87,8 +87,8 @@ The following HTTP operations are available:
 - **DELETE** /api/v1/employees/{id}*`Changes employee status from 'active' to 'inactive'`* 
 *This operation requires 'Authorization' header (Basic YWRtaW46U2VjcjN0IQ==)*
     > Returns HTTP 200 if the employee was inactivated successfully.
-    Returns HTTP 401 if the user is not authorized.
-    Returns HTTP 404 if the employee was not found.
+    > Returns HTTP 401 if the user is not authorized.
+    > Returns HTTP 404 if the employee was not found.
 
     Request example:
    ````
@@ -115,6 +115,7 @@ The following HTTP operations are available:
 - **Dependency Injection** - Helps separating classes from its dependencies, so the code is more reusable and allows replacing dependencies without impacting the class that uses them.
 
 - **Template Method** - Lets subclasses redefine certain steps of an algorithm. It helps reduce and reuse code for integration tests by using a template for the REST calls.
+
 
 
 ## Author
