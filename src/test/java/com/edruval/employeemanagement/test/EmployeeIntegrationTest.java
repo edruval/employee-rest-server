@@ -120,6 +120,26 @@ public class EmployeeIntegrationTest {
 
     @Test
     public void UpdateEmployee_Invalid() {
+        EmployeeDTO employee = TestHelper.buildTestEmployeeDTO(0);
+        HttpEntity<EmployeeDTO> httpCreateEntity = new HttpEntity<EmployeeDTO>(employee, headers);
+        
+        ResponseEntity<EmployeeDTO> createResponse = template.exchange(testServerUrl + "/employees",
+                HttpMethod.POST, httpCreateEntity, EmployeeDTO.class);
+        Assert.assertTrue(createResponse.getStatusCode().equals(HttpStatus.OK));
+        EmployeeDTO createdEmployee = createResponse.getBody();
+        Assert.assertNotNull(createdEmployee);
+
+        long createdId = createdEmployee.getId();
+        employee.setId(createdId);
+        employee.setFirstName(null);
+        HttpEntity<EmployeeDTO> httpUpdateEntity = new HttpEntity<EmployeeDTO>(employee, headers);
+        ResponseEntity<String> updateResponse = template.exchange(testServerUrl + "/employees/" + createdId, 
+                HttpMethod.PUT, httpUpdateEntity,String.class);
+        Assert.assertTrue(updateResponse.getStatusCode().equals(HttpStatus.BAD_REQUEST));
+    }
+    
+    @Test
+    public void UpdateEmployee_NotFound() {
         EmployeeDTO employeeToUpdate = EmployeeDTO.builder().id(0).build();
         HttpEntity<EmployeeDTO> httpUpdateEntity = new HttpEntity<EmployeeDTO>(employeeToUpdate, headers);
 
