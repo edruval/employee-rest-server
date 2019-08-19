@@ -1,6 +1,6 @@
 package com.edruval.employeemanagement;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class EmployeeInitializer implements CommandLineRunner {
         try {
             CsvSchema bootstrapSchema = CsvSchema.emptySchema().withHeader();
             CsvMapper mapper = new CsvMapper();
-            File file = new ClassPathResource(fileName).getFile();
+            InputStream file = new ClassPathResource(fileName).getInputStream();
             MappingIterator<T> readValues = mapper.readerFor(type).with(bootstrapSchema).readValues(file);
             return readValues.readAll();
         } catch (Exception e) {
